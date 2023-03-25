@@ -31,7 +31,7 @@ module.exports = {
       },
 
       updateUser(req, res) {
-        Course.findOneAndUpdate(
+        User.findOneAndUpdate(
           { _id: req.params.userId },
           { $set: req.body },
           { runValidators: true, new: true }
@@ -59,7 +59,7 @@ module.exports = {
       },
 
     // Add a friend
-    addUser(req, res) {
+    addFriend(req, res) {
       console.log('You are adding a friend');
       console.log(req.body);
       User.findOneAndUpdate(
@@ -77,7 +77,7 @@ module.exports = {
         .catch((err) => res.status(500).json(err));
     },
     // Remove a friend
-    removeUser(req, res) {
+    removeFriend(req, res) {
       User.findOneAndUpdate(
         { _id: req.params.userId },
         { $pull: { friends: { friendId: req.params.friendId } } },
