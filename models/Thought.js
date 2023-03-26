@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const reactionSchema = require('./Reaction');
 
 // Schema to create Thought model
 const thoughtSchema = new Schema(
@@ -8,22 +9,13 @@ const thoughtSchema = new Schema(
       required: true,
       max_length: 350,
     },
-    first: {
+    username: {
         type: String,
         required: true,
         max_length: 50,
     },
-      last: {
-        type: String,
-        required: true,
-        max_length: 50,
-    },
-    reactions: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: 'Reaction',
-        },
-      ],
+    reactions: [reactionSchema],
+
       createdAt: {
         type: Date,
         default: Date.now,
@@ -42,19 +34,6 @@ thoughtSchema
   // Getter
   .get(function () {
     return this.reactions.length;
-  });
-
-  thoughtSchema
-  .virtual('fullName')
-  // Getter
-  .get(function () {
-    return `${this.first} ${this.last}`;
-  })
-  // Setter to set the first and last name
-  .set(function (v) {
-    const first = v.split(' ')[0];
-    const last = v.split(' ')[1];
-    this.set({ first, last });
   });
 
 const Thought = model('thought', thoughtSchema);
