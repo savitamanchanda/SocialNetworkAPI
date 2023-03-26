@@ -5,15 +5,13 @@ module.exports = {
     // Get all thoughts
     getThoughts(req, res) {
         Thought.find()
-          .select('-__v')
-          .populate('reactions')
+        .populate({ path: 'reactions', select: '-__v' })
           .then((thoughts) => res.json(thoughts))
           .catch((err) => res.status(500).json(err));
       },
       getSingleThought(req, res) {
         Thought.findOne({ _id: req.params.thoughtId })
-          .select('-__v')
-          .populate('reactions')
+        .populate({ path: 'reactions', select: '-__v' })
           .then((user) =>
             !user
               ? res.status(404).json({ message: 'No thought with that ID' })
