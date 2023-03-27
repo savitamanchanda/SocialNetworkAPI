@@ -18,7 +18,7 @@ An API for a social network web application where users can share their thoughts
   
 Social Network API was created to help users share their thoughts, reat to friend's thoughts and create a friend list. This project is created using Javascript, Node.js, Express.js, MongoDB and Mongoose. 
 
-![Video Demonstration](./assets%3Aimages/e-commerce.gif)
+![Video Demonstration](./assets%3Aimages/SocialNetworkAPI.mp4)
 
   ## Installation 
 
@@ -46,7 +46,7 @@ node index.js
 
   ## Demonstration 
 
-  Watch [this demo](./assets%3Aimages/Untitled_%20Mar%2027%2C%202023%205_02%20PM.webm) to view the application's functionality.
+  Watch [this demo](./assets%3Aimages/SocialNetworkAPI.mp4) to view the application's functionality.
 
   ## User Story 
 
@@ -83,7 +83,7 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 
   * The URL of the GitHub repository - https://github.com/savitamanchanda/SocialNetworkAPI
 
-  * [Video Demonstration](./assets%3Aimages/Untitled_%20Mar%2027%2C%202023%205_02%20PM.gif)
+  * [Video Demonstration](./assets%3Aimages/SocialNetworkAPI.mp4)
   ![](./assets%3Aimages/Screenshot%202023-03-27%20at%205.22.18%20PM.png)
   ![](./assets%3Aimages/Screenshot%202023-03-27%20at%205.22.41%20PM.png)
-  ![](./assets%3Aimages/Untitled_%20Mar%2027%2C%202023%205_02%20PM.gif)
+  ![](./assets%3Aimages/SocialNetworkAPI.mp4)
