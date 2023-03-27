@@ -22,8 +22,26 @@ module.exports = {
       // create a new thought
       createThought(req, res) {
         Thought.create(req.body)
-          .then((dbThoughtData) => res.json(dbThoughtData))
-          .catch((err) => res.status(500).json(err));
+          .then((dbThoughtData) => {
+            return User.findOneAndUpdate(
+              { _id: req.body.userId },
+              { $push: { thoughts: dbThoughtData._id } },
+              { new: true }
+            );
+          })
+          .then((dbUserData) => {
+            if (!dbUserData) {
+              return res
+                .status(404)
+                .json({ message: "Thought created but no user with this id!" });
+            }
+    
+            res.json({ message: "Thought sucessfully created!" });
+          })
+          .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+          });
       },
 
       updateThought(req, res) {
@@ -49,14 +67,12 @@ module.exports = {
               ? res.status(404).json({ message: 'No thought with that ID' })
               : res.json(thought)
           )
-          .then(() => res.json({ message: 'Thought and associated reactions deleted!' }))
+         //.then(() => res.json({ message: 'Thought and associated reactions deleted!' }))
           .catch((err) => res.status(500).json(err));
       },
 
     // Add a reaction
     addReaction(req, res) {
-      console.log('You are adding a reaction');
-      console.log(req.body);
       Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
         { $addToSet: { reactions: req.body } },
